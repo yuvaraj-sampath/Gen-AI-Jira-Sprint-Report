@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sprint Report - {{ sprint_name }}</title>
+    <style>
+        :root {
+            /* Updated gradients per specifications with header and overview colors exchanged */
+            --primary-gradient: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+            --section-gradient-1: linear-gradient(90deg, #a855f7 0%, #4f46e5 100%);
+            --section-gradient-2: linear-gradient(90deg, #10b981 0%, #16a34a 100%);
+            --section-gradient-3: linear-gradient(90deg, #f59e0b 0%, #ea580c 100%);
+            
+            /* Card color schemes */
+            --card-bg-1: #fdf2f8; /* pink-50 */
+            --card-text-1: #db2777; /* pink-600 */
+            --card-text-1-dark: #831843; /* pink-900 */
+            --card-text-1-light: #be185d;
+            
+            --card-bg-2: #ecfdf5; /* emerald-50 */
+            --card-text-2: #059669; /* emerald-600 */
+            --card-text-2-dark: #064e3b; /* emerald-900 */
+            
+            --card-bg-3: #fff7ed; /* orange-50 */
+            --card-text-3: #ea580c; /* orange-600 */
+            --card-text-3-dark: #7c2d12; /* orange-900 */
+            
+            --success-color: #16a34a;
+            --warning-color: #ca8a04;
+            --danger-color: #dc2626;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .success {color: #16a34a;}
+        .warning {color: #ca8a04;}
+        .danger {color: #dc2626;}
+        @media (max-width: 600px) {
+            .metric-card {width: 100%; margin-bottom: 15px;}
+            .team-member-card {width: 100%;}
+        }
+
+        /* New styles for shiny glassy effect */
+        .glassy {
+            background: linear-gradient(135deg, #ff3b3f 0%, #ff7b7f 100%);
+            border-radius: 12px;
+            padding: 25px 35px;
+            box-shadow: 0 4px 24px 0 rgba(255, 59, 63, 0.15);
+            backdrop-filter: blur(2px);
+        }
+        .glassy h1, .glassy p {
+            color: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .glassy h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 8px rgba(255,255,255,0.25);
+        }
+        .glassy p {
+            margin: 4px 0 0 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="850" style="border-collapse: collapse;">
+        <tr>
+            <td style="padding: 20px 30px;">
+                <!-- Header -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#D52B1E; border-radius:12px; padding:25px 35px; box-shadow: 0 4px 24px 0 rgba(213,43,30,0.15);">
+                    <tr>
+                        <td>
+                            <h1 style="margin:0; font-size:32px; font-weight:700; font-family:'Times New Roman', Times, serif; color:#fff; letter-spacing:2px; text-align:left; text-shadow:0 0 18px #FFD700,0 0 24px #FFD700;">
+                                Sprint Analysis Report
+                            </h1>
+                            <p style="margin:4px 0 0 0; color:#f0dfff; font-size:16px; font-family:'Times New Roman', Times, serif;">{{ sprint_name }}</p>
+                        </td>
+                        <td align="right" valign="middle">
+                            <p style="margin:0; color:#ffffff; font-size:14px; font-weight:700; font-family:'Times New Roman', Times, serif;">&#128197; &nbsp; {{ sprint_start.strftime('%B %d, %Y') }} - {{ sprint_end.strftime('%B %d, %Y') }}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Greeting -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td style="padding:10px 0px;">
+                            <h2 style="margin:0; color:#333; font-size:18px; font-family:'Times New Roman', Times, serif;">Hi {{ manager_name.split()[0] }},</h2>
+                            <p style="margin:5px 0 0; color:#555; font-size:14px;">Here's a summary of your team's performance in the current sprint:</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Sprint Overview Section Header -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:30px;">
+                    <tr>
+                        <td style="padding:10px 35px; background-color:#a855f7; border-radius:9px;">
+                            <h2 style="margin:0; color:#ffffff; font-size:20px; font-weight:700; font-family:'Times New Roman', Times, serif;">Sprint Overview</h2>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Key Metrics Cards -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td width="32%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <img src="https://i.imgur.com/v82aN26.png" width="40" height="40" alt="icon-sprint" style="display:block;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Team Capacity</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ team_capacity }} <span style="font-size:18px; color:#a855f7;">pts</span></p>
+                                </td></tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="32%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <img src="https://i.imgur.com/u7a9Yog.png" width="40" height="40" alt="icon-team" style="display:block;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Assigned Points</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ team_assigned }} <span style="font-size:18px; color:#a855f7;">pts</span></p>
+                                </td></tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="32%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <img src="https://i.imgur.com/nJgq2aO.png" width="40" height="40" alt="icon-demand" style="display:block;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Team Efficiency</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ efficiency }}%</p>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Team Capacity Utilization -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td style="padding:25px; background-color:#ede9fe; border-radius:12px;">
+                            <p style="margin:0 0 10px 0; font-size:16px; color:#4b2067; font-weight:700;">Team Capacity Utilization</p>
+                            <div style="margin:15px 0; width:100%;">
+                                <div style="font-size:14px; margin-bottom:5px; color:#a855f7;">Utilization: {{ "%.1f"|format(team_assigned / team_capacity * 100) }}%</div>
+                                <div style="height:10px; border-radius:5px; background-color:#d1c4e9; width:100%;">
+                                    <div style="height:10px; border-radius:5px; width: {{ min(team_assigned / team_capacity * 100, 100) }}%; background-color:#a855f7;"></div>
+                                </div>
+                            </div>
+                            <p style="margin:15px 0 0 0; font-size:14px; color:#a855f7;">{% if team_assigned > team_capacity %}Your team is <strong style='color:#4b2067;'>overallocated</strong> by {{ team_assigned - team_capacity }} story points.{% elif team_assigned < team_capacity * 0.8 %}Your team might be <strong style='color:#4b2067;'>underutilized</strong>, with {{ team_capacity - team_assigned }} story points of unused capacity.{% else %}Your team has a <strong style='color:#4b2067;'>good balance</strong> of work to capacity.{% endif %}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Performance Metrics Section -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 40px;">
+                    <tr>
+                        <td style="padding: 10px 35px; background-color:#10b981; border-radius: 9px;">
+                            <h2 style="margin: 0; color: #ffffff; font-size: 20px; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Performance Metrics</h2>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Team Members Performance Grid - in separate card with renamed column -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 20px 0; font-size: 16px; color:#064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Team Members Performance</p>
+                                        
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            {% for member in team_members %}
+                                            {% if loop.index0 % 2 == 0 %}<tr>{% endif %}
+                                                <td width="49%" style="padding: {% if loop.index0 % 2 == 0 %}0 1% 15px 0{% else %}0 0 15px 1%{% endif %};">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #a7f3d0; border-radius: 8px; overflow: hidden;">
+                                                        <tr>
+                                                            <td style="padding: 15px; background-color: #d1fae5;">
+                                                                <p style="margin: 0; font-size: 14px; color: var(--card-text-2-dark); font-weight: 700; font-family: 'Times New Roman', Times, serif;">{{ member.assignee.split('@')[0] }}</p>
+                                                                <p style="margin: 2px 0 0 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">{{ member.email }}</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 10px 15px;">
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tr>
+                                                                        <td width="33%">
+                                                                            <p style="margin: 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Capacity</p>
+                                                                            <p style="margin: 3px 0 0 0; font-size: 15px; color: var(--card-text-2-dark); font-weight: 700; font-family: 'Times New Roman', Times, serif;">{{ member.capacity }} pts</p>
+                                                                        </td>
+                                                                        <td width="33%">
+                                                                            <p style="margin: 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Assigned</p>
+                                                                            <p style="margin: 3px 0 0 0; font-size: 15px; color: var(--card-text-2-dark); font-weight: 700; font-family: 'Times New Roman', Times, serif;">{{ member.story_points }} pts</p>
+                                                                        </td>
+                                                                        <td width="33%">
+                                                                            <p style="margin: 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Rate of Completion</p>
+                                                                            <p style="margin: 3px 0 0 0; font-size: 15px; font-weight: 700; font-family: 'Times New Roman', Times, serif;
+                                                                                color: {% if member.completion_rate < 70 %}var(--danger-color){% elif member.completion_rate < 90 %}var(--warning-color){% else %}var(--success-color){% endif %};">
+                                                                                {{ member.completion_rate }}%
+                                                                            </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                
+                                                                <div style="margin-top: 10px, width: 100%;">
+                                                                    <div style="height: 6px; border-radius: 3px; background-color: #a7f3d0; width: 100%;">
+                                                                        <div style="height: 100%; border-radius: 3px; width: {{ member.completion_rate }}%; 
+                                                                            background-color: {% if member.completion_rate < 70 %}var(--danger-color){% elif member.completion_rate < 90 %}var(--warning-color){% else %}var(--success-color){% endif %};">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            {% if loop.index0 % 2 == 1 or loop.last %}</tr>{% endif %}
+                                            {% endfor %}
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Task Distribution - Separate Card -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td width="49%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 15px 0; font-size: 16px; color: #064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Task Distribution</p>
+                                        
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Team Members: {{ team_members|length }}</p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Total Issues: {{ total_issues }}</p>
+                                                    <p style="margin: 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Completed Issues: {{ completed_issues }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="49%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 15px 0; font-size: 16px; color: #064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Priority Breakdown</p>
+                                        
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">High Priority: {{ high_priority_count }}</p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Medium Priority: {{ medium_priority_count }}</p>
+                                                    <p style="margin: 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Low Priority: {{ low_priority_count }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Issue Type Distribution - Separate Card -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td style="padding: 25px; background-color: #ecfdf5; border-radius: 12px;">
+                            <p style="margin: 0 0 15px 0; font-size: 16px; color: #064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Issue Type Distribution</p>
+                            
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td width="50%" valign="top">
+                                        <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Stories: {{ story_count }}</p>
+                                        <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Tasks: {{ task_count }}</p>
+                                    </td>
+                                    <td width="50%" valign="top">
+                                        <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Bugs: {{ bug_count }}</p>
+                                        <p style="margin: 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Others: {{ other_issue_count }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Insights Section Header -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:40px;">
+                    <tr>
+                        <td style="padding:10px 35px; background-color:#f59e0b; border-radius:9px;">
+                            <h2 style="margin:0; color:#ffffff; font-size:20px; font-weight:700;">Insights & Recommendations</h2>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Key Observations - Separate Card -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td style="padding: 25px; background-color:#fff7ed; border-radius: 12px;">
+                            <p style="margin: 0 0 15px 0; font-size: 16px; color:#7c2d12; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Key Observations</p>
+                            
+                            <ul style="margin: 0; padding: 0 0 0 20px;">
+                                {% if team_assigned > team_capacity %}
+                                <li style="margin: 0 0 10px 0; color: var(--card-text-3); font-size: 14px; font-family: 'Times New Roman', Times, serif;">
+                                    Your team is <strong>overallocated</strong>. Consider reducing work or extending sprint duration.
+                                </li>
+                                {% endif %}
+                                
+                                {% if team_assigned < team_capacity * 0.7 %}
+                                <li style="margin: 0 0 10px 0; color: var(--card-text-3); font-size: 14px; font-family: 'Times New Roman', Times, serif;">
+                                    Your team has significant <strong>unused capacity</strong>. Consider taking on more work or reviewing capacity estimates.
+                                </li>
+                                {% endif %}
+                                
+                                {% for member in team_members %}
+                                    {% if member.story_points > member.capacity * 1.3 %}
+                                    <li style="margin: 0 0 10px 0; color: var(--card-text-3); font-size: 14px; font-family: 'Times New Roman', Times, serif;">
+                                        {{ member.assignee.split('@')[0] }} is overallocated ({{ "%.1f"|format(member.story_points / member.capacity * 100) }}% of capacity). Consider redistributing tasks.
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Recommendations - Separate Card -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td style="padding: 25px; background-color:#fff7ed; border-radius: 12px;">
+                            <p style="margin: 0 0 15px 0; font-size: 16px; color:#7c2d12; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Recommendations</p>
+                            
+                            <ul style="margin: 0; padding: 0 0 0 20px;">
+                                <li style="margin: 0 0 10px 0; color: var(--card-text-3); font-size: 14px; font-family: 'Times New Roman', Times, serif;">
+                                    Review the sprint goals and ensure all team members understand their priorities.
+                                </li>
+                                <li style="margin: 0 0 10px 0; color: var(--card-text-3); font-size: 14px; font-family: 'Times New Roman', Times, serif;">
+                                    Schedule a mid-sprint check-in to address any potential blockers early.
+                                </li>
+                                <li style="margin: 0; color: var(--card-text-3); font-size: 14px; font-family: 'Times New Roman', Times, serif;">
+                                    Consider reviewing story point estimates for consistency across the team.
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Footer -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:40px; background-color:#f0f0f0; border-radius:8px;">
+                    <tr>
+                        <td style="padding:20px; text-align:center;">
+                            <p style="margin:0; font-size:12px; color:#666;">This report was automatically generated from your Jira Sprint data.</p>
+                            <p style="margin:5px 0 0 0; font-size:12px; color:#666;">You're doing great, have a good day!</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

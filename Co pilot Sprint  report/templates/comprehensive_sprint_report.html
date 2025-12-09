@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sprint Report - {{ sprint_name }}</title>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+            --section-gradient-1: linear-gradient(90deg, #a855f7 0%, #4f46e5 100%);
+            --section-gradient-2: linear-gradient(90deg, #10b981 0%, #16a34a 100%);
+            --section-gradient-3: linear-gradient(90deg, #f59e0b 0%, #ea580c 100%);
+            
+            --card-bg-1: #fdf2f8;
+            --card-text-1: #db2777;
+            --card-text-1-dark: #831843;
+            --card-text-1-light: #be185d;
+            
+            --card-bg-2: #ecfdf5;
+            --card-text-2: #059669;
+            --card-text-2-dark: #064e3b;
+            
+            --card-bg-3: #fff7ed;
+            --card-text-3: #ea580c;
+            --card-text-3-dark: #7c2d12;
+            
+            --success-color: #16a34a;
+            --warning-color: #ca8a04;
+            --danger-color: #dc2626;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .success {color: #16a34a;}
+        .warning {color: #ca8a04;}
+        .danger {color: #dc2626;}
+    </style>
+</head>
+<body>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="850" style="border-collapse: collapse;">
+        <tr>
+            <td style="padding: 20px 30px;">
+                <!-- Header -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#33d4bc; border-radius:12px; padding:25px 35px; box-shadow: 0 4px 24px 0 rgba(51, 212, 188, 0.15);">
+                    <tr>
+                        <td>
+                            <h1 style="margin:0; font-size:32px; font-weight:700; font-family:'Times New Roman', Times, serif; color:#fff; letter-spacing:2px; text-align:left; text-shadow:0 0 18px #FFD700,0 0 24px #FFD700;">
+                                Sprint Analysis Report
+                            </h1>
+                            <p style="margin:4px 0 0 0; color:#0e596c; font-size:16px; font-family:'Times New Roman', Times, serif;">Sprint: {{ sprint_name }}</p>
+                        </td>
+                        <td align="right" valign="middle">
+                            <p style="margin:0; color:#ffffff; font-size:14px; font-weight:700; font-family:'Times New Roman', Times, serif;">📅 &nbsp; {{ sprint_start_formatted }} - {{ sprint_end_formatted }}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Greeting -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td style="padding:10px 0px;">
+                            <h2 style="margin:0; color:#333; font-size:18px; font-family:'Times New Roman', Times, serif;">Hi Team,</h2>
+                            <p style="margin:5px 0 0; color:#555; font-size:14px;">Here's a summary of your squad performance in the current sprint:</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Sprint Overview Section Header -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:30px;">
+                    <tr>
+                        <td style="padding:10px 35px; background-color:#a855f7; border-radius:9px;">
+                            <h2 style="margin:0; color:#ffffff; font-size:20px; font-weight:700; font-family:'Times New Roman', Times, serif;">Sprint Overview 📊</h2>   
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Key Metrics Cards -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td width="24%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Team Capacity</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ team_capacity }} <span style="font-size:18px; color:#a855f7;">pts</span></p>
+                                </td></tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="24%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Assigned Points</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ assigned_points }} <span style="font-size:18px; color:#a855f7;">pts</span></p>
+                                </td></tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="24%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Completed Points</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ completed_issues_count }} <span style="font-size:18px; color:#a855f7;">pts</span></p>
+                                </td></tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="24%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ede9fe; border-radius:12px;">
+                                <tr><td style="padding:25px;">
+                                    <p style="margin:12px 0 0 0; font-size:14px; color:#4b2067; font-weight:700;">Completion %</p>
+                                    <p style="margin:4px 0 0 0; font-size:22px; color:#a855f7; font-weight:700;">{{ team_completion_rate }}%</p>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Team Capacity Utilization -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td style="padding:25px; background-color:#ede9fe; border-radius:12px;">
+                            <p style="margin:0 0 10px 0; font-size:16px; color:#4b2067; font-weight:700;">Team Capacity Utilization</p>
+                            <div style="margin:15px 0; width:100%;">
+                                <div style="font-size:14px; margin-bottom:5px; color:#a855f7;">Utilization: {{ team_capacity_utilization }}%</div>
+                                <div style="height:10px; border-radius:5px; background-color:#d1c4e9; width:100%;">
+                                    <div style="height:10px; border-radius:5px; width: {{ min(team_capacity_utilization, 100) }}%; background-color:#a855f7;"></div>
+                                </div>
+                            </div>
+                            <p style="margin:15px 0 0 0; font-size:14px; color:#a855f7;">{{ capacity_insight }}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Performance Metrics Section -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 40px;">
+                    <tr>
+                        <td style="padding: 10px 35px; background-color:#10b981; border-radius: 9px;">
+                            <h2 style="margin: 0; color: #ffffff; font-size: 20px; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Performance Metrics</h2>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Task Distribution, Priority Breakdown, and Issue Type Distribution -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td width="32%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 15px 0; font-size: 16px; color: #064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Task Distribution</p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Team Members: {{ team_members_count }}</p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Total Stories: {{ total_issues_count }}</p>
+                                                    <p style="margin: 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Completed Stories: {{ completed_issues_count }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="32%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 15px 0; font-size: 16px; color: #064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Priority Breakdown</p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">High Priority: {{ high_priority_count }}</p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Medium Priority: {{ medium_priority_count }}</p>
+                                                    <p style="margin: 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Low Priority: {{ low_priority_count }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="2%"></td>
+                        <td width="32%" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 15px 0; font-size: 16px; color: #064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Issue Type Distribution</p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td width="50%" valign="top">
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Stories: {{ stories_count }}</p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Tasks: {{ tasks_count }}</p>
+                                                </td>
+                                                <td width="50%" valign="top">
+                                                    <p style="margin: 0 0 5px 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Bugs: {{ bugs_count }}</p>
+                                                    <p style="margin: 0; font-size: 14px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Others: {{ others_count }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Team Members Performance -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ecfdf5; border-radius: 12px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0 0 20px 0; font-size: 16px; color:#064e3b; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Team Members Performance</p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            {% for member in team_members %}
+                                            {% if loop.index0 % 2 == 0 %}<tr>{% endif %}
+                                                <td width="49%" style="padding: {% if loop.index0 % 2 == 0 %}0 1% 15px 0{% else %}0 0 15px 1%{% endif %};">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #a7f3d0; border-radius: 8px; overflow: hidden;">
+                                                        <tr>
+                                                            <td style="padding: 15px; background-color: #d1fae5;">
+                                                                <p style="margin: 0; font-size: 14px; color: var(--card-text-2-dark); font-weight: 700; font-family: 'Times New Roman', Times, serif;">{{ member.assignee_name }}</p>
+                                                                <p style="margin: 2px 0 0 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">{{ member.email }}</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 10px 15px;">
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tr>
+                                                                        <td width="33%">
+                                                                            <p style="margin: 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Capacity</p>
+                                                                            <p style="margin: 3px 0 0 0; font-size: 15px; color: var(--card-text-2-dark); font-weight: 700; font-family: 'Times New Roman', Times, serif;">{{ member.individual_capacity }} pts</p>
+                                                                        </td>
+                                                                        <td width="33%">
+                                                                            <p style="margin: 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Assigned</p>
+                                                                            <p style="margin: 3px 0 0 0; font-size: 15px; color: var(--card-text-2-dark); font-weight: 700; font-family: 'Times New Roman', Times, serif;">{{ member.assigned_points }} pts</p>
+                                                                        </td>
+                                                                        <td width="33%">
+                                                                            <p style="margin: 0; font-size: 12px; color: var(--card-text-2); font-family: 'Times New Roman', Times, serif;">Completion %</p>
+                                                                            <p style="margin: 3px 0 0 0; font-size: 15px; font-weight: 700; font-family: 'Times New Roman', Times, serif;
+                                                                                color: {% if member.completion_rate < 70 %}#dc2626{% elif member.completion_rate < 90 %}#ca8a04{% else %}#16a34a{% endif %};">
+                                                                                {{ member.completion_rate }}%
+                                                                            </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                
+                                                                <div style="margin-top: 10px; width: 100%;">
+                                                                    <div style="height: 6px; border-radius: 3px; background-color: #a7f3d0; width: 100%;">
+                                                                        <div style="height: 100%; border-radius: 3px; width: {{ member.completion_rate }}%; 
+                                                                            background-color: {% if member.completion_rate < 70 %}#dc2626{% elif member.completion_rate < 90 %}#ca8a04{% else %}#16a34a{% endif %};">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            {% if loop.index0 % 2 == 1 or loop.last %}</tr>{% endif %}
+                                            {% endfor %}
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Insights Section Header -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:40px;">
+                    <tr>
+                        <td style="padding:10px 35px; background-color:#f59e0b; border-radius:9px;">
+                            <h2 style="margin:0; color:#ffffff; font-size:20px; font-weight:700;">Insights & Recommendations</h2>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- AI-Generated Insights -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td style="padding: 25px; background-color:#fff7ed; border-radius: 12px;">
+                            <p style="margin: 0 0 15px 0; font-size: 16px; color:#7c2d12; font-weight: 700; font-family: 'Times New Roman', Times, serif;">AI-Generated Insights</p>
+                            
+                            <div style="margin: 0; padding: 0;">
+                                {{ llm_insights|safe }}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Footer -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:40px; background-color:#f0f0f0; border-radius:8px;">
+                    <tr>
+                        <td style="padding:20px; text-align:center;">
+                            <p style="margin:0; font-size:12px; color:#666;">Automatically generated report from your Jira Sprint data with AI-powered insights. AI can make mistakes, so please double-check it.</p>
+                            <p style="margin:5px 0 0 0; font-size:12px; color:#666;">You're doing great, have a good day!</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
