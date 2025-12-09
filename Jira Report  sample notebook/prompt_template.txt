@@ -1,0 +1,78 @@
+-> Data
+Jira capacity planning Data : {Jira_capacity_planning_data}
+Assignee aggregated Data : {Assignee_aggregated_data}
+Note for any calculated data first use Assignee aggregated Data if didn't find required info then use Jira capacity planning Data
+
+
+
+-> Response Formatting : 
+### Sprint Level Data [sprint_name]
+
+ Total Story Points: [Total Story Points]
+ Total Capacity Story Points: [Total Capacity Story Points]
+ Number of Issues: [Number of Issues]
+ Issue Status Distribution:
+     Ready For Sprint: [Count]
+     Development: [Count]
+     Hold: [Count]
+     Approved: [Count]
+     APPROVE DEFINITION OF DONE: [Count]
+     Open: [Count]
+     Unresolved: [Count]
+     Add any other relevant statuses here
+ Priority Distribution:
+     High: [Count]
+     Medium: [Count]
+     Add any other relevant priorities here
+ Spill Over Issues: [Number] issues spilled over from previous sprints.
+ Primary Component: [Component Name]
+ Labels: [Label 1], [Label 2], etc.
+
+---
+
+### Individual Assignee Insights : 
+
+ [Assignee Name (vzid)]:
+     Story Points: [Story Points]
+     Number of Issues: [Number of Issues]
+     Total Capacity Story Points: [Total Capacity Story Points]
+     Issues Key: [issue_key 1], [issue_key 2], order by issue_key etc.
+ Repeat the above block for each assignee.
+
+---
+
+### Summary of Findings
+
+1.  Sprint Focus: [Briefly describe the main focus of the sprint, e.g., "The sprint is heavily focused on [Project/Product] related tasks, particularly around [Key Areas]."]
+2.  Workload Distribution: [Comment on workload distribution, e.g., "Assignee A, Assignee B, and Assignee C have a higher number of story points assigned."]
+3.  Blocked Issues: [Identify any significant blocked issues, e.g., "Several issues are on "Hold," particularly those related to [Specific Issue Type], indicating potential roadblocks or dependencies."]
+4.  Spillover: [Analyze spillover, e.g., "A significant number of issues have spilled over from previous sprints, suggesting potential challenges in sprint planning or execution."]
+5.  Key Initiatives/Themes: [Highlight any major recurring themes or initiatives, e.g., "Multiple tasks are related to updating and validating the [Specific Area], indicating a significant effort in this area."]
+6.  External Dependencies: [Note any dependencies on external teams or support, e.g., "Several issues are waiting on or interacting with [External Entity], which could impact timelines."]
+
+---
+
+### Additional Information
+
+1.  Overall Team Capacity: The total capacity story points across all assignees is [Total Capacity Across All Assignees].
+2.  Team Capacity Utilization: The total story points ([Total Story Points in Sprint]) versus the total capacity story points ([Total Capacity Across All Assignees]) suggests that [comment on utilization, e.g., "the team is not fully utilizing its capacity, or the capacity estimates may need review."].
+3.  Potential Bottlenecks: [Identify potential bottlenecks, e.g., "Issues on "Hold" status could become bottlenecks and should be addressed proactively."]
+
+---
+
+### Next Steps
+
+1.  Address Blocked Issues: Investigate and resolve the issues causing tasks to be on "Hold," particularly those related to [Specific Issues, e.g., "performance issues and Oracle support."].
+2.  Review Spillover Issues: Analyze the reasons for spillover from previous sprints and adjust sprint planning accordingly.
+3.  Optimize Workload Distribution: Ensure a more balanced workload distribution among team members in future sprints.
+4.  Monitor External Dependencies: Closely monitor issues dependent on [External Entity] to minimize delays.
+5.  Capacity Planning Review: Re-evaluate the team's capacity and story point estimation process to improve accuracy.
+6.  Prioritize High Priority Tasks: Ensure that high-priority tasks related to [Specific High-Priority Areas] are on track.
+7.  Communication: Improve communication regarding the status of issues, especially those with dependencies or external factors.
+
+
+Note :
+1. Add any additional insights or observations derived from the Jira capacity planning data points only that have not been addressed in the sections above.
+
+-> Ouput Formatting:
+Do NOT include any additional text, quotes, or markdown formatting
